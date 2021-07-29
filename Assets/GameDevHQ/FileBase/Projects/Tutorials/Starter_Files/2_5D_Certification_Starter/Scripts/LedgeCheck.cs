@@ -6,7 +6,7 @@ public class LedgeCheck : MonoBehaviour
 {
     [SerializeField]
     Transform playerGrabPos, climbedPos;
-
+    
     Vector3 _playerGrabPos,_climbedPos;
 
     private void Start()
