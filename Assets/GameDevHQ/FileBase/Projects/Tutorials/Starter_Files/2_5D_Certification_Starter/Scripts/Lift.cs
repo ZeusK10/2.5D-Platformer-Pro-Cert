@@ -6,11 +6,7 @@ public class Lift : MonoBehaviour
 {
     [SerializeField]
     Transform _pointA, _pointB;
-    [SerializeField]
-    float _speed = 2.0f;
-    [SerializeField]
     float downDistance = 0.1f;
-    [SerializeField]
     Vector3 gotoPos;
     bool isPointA,callElevator;
     void Start()
