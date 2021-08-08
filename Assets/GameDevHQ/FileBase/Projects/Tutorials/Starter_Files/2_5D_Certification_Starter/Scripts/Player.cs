@@ -9,8 +9,9 @@ public class Player : MonoBehaviour
     private float _speed=2.0f,_jumpHeight=15.0f,_gravity=1.0f,_yVelocity;
     private Vector3 move, velocity;
     private Animator _playerAnimator;
-    private bool grabLedge,_rolling;
+    private bool grabLedge,_ladderclimb;
     private LedgeCheck _ledge;
+    private Transform _ladderexit;
 
     void Start()
     {
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (grabLedge == false)
+        if (grabLedge == false && _ladderclimb==false)
         {
             if (Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space)) 
             {
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
     public void EnableMovementAfterRoll()
     {
         _playerAnimator.SetBool("IsRolling", false);
-        _rolling = false;
+        
     }
 
     public void EnableMovement()
@@ -52,7 +53,23 @@ public class Player : MonoBehaviour
         transform.position = _ledge.ClimbedPos();
         grabLedge = false;
         _controller.enabled = true;
+    }
 
+    public void LadderClimb(Transform exitPos)
+    {
+        _playerAnimator.SetBool("IsClimbingLadder", true);
+        _ladderclimb = true;
+        _ladderexit = exitPos;
+        Debug.Log("Inside climb");
+    }
+
+    public void LadderClimbExit()
+    {
+
+        transform.position = _ladderexit.position;
+        _playerAnimator.SetBool("IsClimbingLadder", false);
+        _ladderclimb = false;
+        Debug.Log("Inside exit");
     }
 
     void PlayerMovement()
