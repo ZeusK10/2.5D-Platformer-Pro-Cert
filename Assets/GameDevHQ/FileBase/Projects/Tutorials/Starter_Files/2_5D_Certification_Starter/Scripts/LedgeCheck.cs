@@ -1,33 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class LedgeCheck : MonoBehaviour
-{
-    [SerializeField]
-    Transform playerGrabPos, climbedPos;
-    
-    Vector3 _playerGrabPos,_climbedPos;
-
-    private void Start()
-    {
-        _playerGrabPos = playerGrabPos.position;
-        _climbedPos = climbedPos.position;
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag=="Ledge_Checker")
-        {
-            Player player = other.gameObject.GetComponentInParent<Player>();
-            if(player!=null)
-            {
-                player.PlayLedgeGrabAnimation(_playerGrabPos,this);
-            }
-        }
-    }
-
-    public Vector3 ClimbedPos()
-    {
-        return _climbedPos;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:f0f20643e1ea5f39112970d4af523b5e4330ee925cd506166b8eadeac0f347b9
+size 755
